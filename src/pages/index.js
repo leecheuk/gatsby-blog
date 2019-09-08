@@ -11,7 +11,7 @@ const IndexPage = ({data}) => {
       {data.allMarkdownRemark.edges.map(({node}) => (
         node ? <div className="blog-post-container" key={node.id}>
           <div className="blog-post">
-            <Link to={node.frontmatter.path}><h3>{node.frontmatter.title}</h3></Link>
+            <Link to={node.fields.slug}><h3>{node.frontmatter.title}</h3></Link>
             <p className="author">{node.frontmatter.author}</p>
             <p className="excerpt">{node.excerpt}</p>
           </div>
@@ -29,6 +29,9 @@ export const  query = graphql`
       totalCount
       edges {
           node {
+            fields {
+              slug
+            }
             frontmatter {
               path
               title

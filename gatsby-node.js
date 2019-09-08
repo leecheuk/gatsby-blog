@@ -5,11 +5,11 @@
  */
 
 const {createFilePath} = require(`gatsby-source-filesystem`)
-const {path} = require(`path`)
+const path = require(`path`)
 
 // create a path or slug for each page
-exports.onCreateNode = ({ node, getNode, boundActionCreators}) => {
-    const { createNoteField } = boundActionCreators
+exports.onCreateNode = ({ node, getNode, actions }) => {
+    const { createNodeField } = actions
     if (node.internal.type === `MarkdownRemark`) {
         const slug = createFilePath({ node, getNode, basePath: `pages` })
         createNodeField({
@@ -21,8 +21,8 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators}) => {
 }
 
 // create page for each slug
-exports.createPages = ({graphql, boundActionCreators}) => {
-    const {createPage} = boundActionCreators
+exports.createPages = ({graphql, actions}) => {
+    const {createPage} = actions
     return new Promise((resolve, reject) => {
         graphql(`
             {
