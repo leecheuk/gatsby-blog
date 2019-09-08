@@ -5,7 +5,7 @@
  */
 
 const {createFilePath} = require(`gatsby-source-filesystem`)
-const {}
+const {path} = require(`path`)
 
 // create a path or slug for each page
 exports.onCreateNode = ({ node, getNode, boundActionCreators}) => {
